@@ -5,6 +5,7 @@ import { Type } from 'class-transformer';
 export class CreateUpdateEventDto {
   @Field(() => String) id: string;
   @Field(() => String) name: string;
+  @Field(() => String) description: string;
 
   @Type(() => Date)
   start: Date;

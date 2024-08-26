@@ -16,6 +16,8 @@ async function bootstrap() {
   app.use(bodyParser.json({ limit: '100mb' }));
   app.enableCors();
   const configService: ConfigService = app.get(ConfigService);
+  const httpPort = configService.get('Iplan_BFF_App_Port') as number;
+  const grpcPort = configService.get('Iplan_BFF_Grpc_Port') as number;
   /** TODO: Remove this once base development is finished
    * (FOR gRPC ServerReflection) */
   app.connectMicroservice(mergeGrpcOptions([grpcClientOptions]), {
@@ -23,7 +25,9 @@ async function bootstrap() {
   });
   await app.startAllMicroservices();
   await app.listen(configService.get('Iplan_BFF_App_Port'));
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`Microservice running`);
+  console.log(`http: ${httpPort}`);
+  console.log(`grpc: ${grpcPort}`);
 }
 
 bootstrap();

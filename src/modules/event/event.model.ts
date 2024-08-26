@@ -5,6 +5,7 @@ import { BaseModel } from '../../utils/shared.models';
 export class EventModel extends BaseModel {
   @Field(() => String) id: string;
   @Field(() => String) name: string;
+  @Field(() => String) description: string;
   @Field(() => Date) start: Date;
   @Field(() => Date) end: Date;
 }
